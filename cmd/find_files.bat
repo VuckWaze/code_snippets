@@ -5,4 +5,8 @@ REM Search all files recursively for files with "searchstring" in the file name:
 set searchstring=*.exe
 
 CD C:\
-FORFILES /S /M %searchstring% /C "cmd /c echo @path"
+
+FOR /F %d IN ('dir /A:D /B') DO @IF NOT %d==Windows (
+  CD %d
+  FORFILES /S /M %searchstring% /C "cmd /c echo @path"
+  )
