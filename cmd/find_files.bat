@@ -7,6 +7,5 @@ set searchstring=*.exe
 CD C:\
 
 FOR /F %d IN ('dir /A:D /B') DO @IF NOT %d==Windows (
-  CD %d
-  FORFILES /S /M %searchstring% /C "cmd /c echo @path"
+  FORFILES /P C:\%d /S /M %searchstring% /C "cmd /c echo @path"
   )
